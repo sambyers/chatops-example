@@ -1,0 +1,7 @@
+# Package Constants
+
+API_KEY_ENVIRONMENT_VARIABLE = 'MERAKI_DASHBOARD_API_KEY'
+
+DEFAULT_BASE_URL = "https://api.meraki.com/api/v0"
+
+DEFAULT_MAX_RETRIES = 3
