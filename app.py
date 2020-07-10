@@ -19,8 +19,6 @@ def get_all_enabled_ssids():
                     if ssid['enabled']:
                         ssid['psk'] = 'XXXXXXXXXX'  # Anonymize the SSID PSK
                         net['ssids'].append(ssid)
-            if not net['ssids']:
-                org['networks'].remove(net)
     return orgs_nets
 
 
@@ -31,8 +29,6 @@ def get_all_networks():
         org['networks'] = []
         for net in api.networks.get_networks(org['id']):
             org['networks'].append(net)
-        if not org['networks']:
-            orgs_nets.remove(org)
     return orgs_nets
 
 
