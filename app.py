@@ -64,8 +64,7 @@ def lambda_handler(event, context):
             if "/help" in message_list:
                 wbxapi.messages.create(room.id, text=help_msg())
             elif "/ssids" in message_list:
-                ssids = get_all_enabled_ssids()
-                wbxapi.messages.create(room.id, text=to_msg())
+                wbxapi.messages.create(room.id, text=to_msg(get_all_enabled_ssids()))
             elif "/networks" in message_list:
                 wbxapi.messages.create(room.id, text=to_msg(get_all_networks()))
             elif "/orgs" in message_list:
