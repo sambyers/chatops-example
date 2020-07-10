@@ -11,7 +11,9 @@ def get_all_enabled_ssids():
     '''Return all SSIDs across all orgs and nets that are enabled.'''
     api = Meraki()
     orgs_nets = get_all_networks()
+    ssids = []
     for org in orgs_nets:
+        ssids.append()
         for net in org['networks']:
             if 'wireless' in net['productTypes']:
                 net['ssids'] = []
@@ -19,6 +21,8 @@ def get_all_enabled_ssids():
                     if ssid['enabled']:
                         ssid['psk'] = 'XXXXXXXXXX'  # Anonymize the SSID PSK
                         net['ssids'].append(ssid)
+            if not net['ssids']:
+                org.remove(net)
     return orgs_nets
 
 
@@ -62,7 +66,8 @@ def lambda_handler(event, context):
             if "/help" in message_list:
                 wbxapi.messages.create(room.id, text=help_msg())
             elif "/ssids" in message_list:
-                wbxapi.messages.create(room.id, text=to_msg(get_all_enabled_ssids()))
+                ssids = get_all_enabled_ssids()
+                wbxapi.messages.create(room.id, text=to_msg())
             elif "/networks" in message_list:
                 wbxapi.messages.create(room.id, text=to_msg(get_all_networks()))
             elif "/orgs" in message_list:
