@@ -11,9 +11,7 @@ def get_all_enabled_ssids():
     '''Return all SSIDs across all orgs and nets that are enabled.'''
     api = Meraki()
     orgs_nets = get_all_networks()
-    ssids = []
     for org in orgs_nets:
-        ssids.append()
         for net in org['networks']:
             if 'wireless' in net['productTypes']:
                 net['ssids'] = []
